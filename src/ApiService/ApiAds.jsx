@@ -125,8 +125,8 @@ export const adsQuery = createApi({
                 },
             }),
             providesTags: [
-                { type: "ADS", id: "LIST" },
-                { type: "ADS", id: "LIST" },
+                { type: "Comments", id: "LIST" },
+                // { type: "ADS", id: "LIST" },
             ],
         }),
         createCommentAds: build.mutation({

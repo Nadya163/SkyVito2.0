@@ -32,7 +32,9 @@ export default function Comments({ itemId }) {
                                     />
                                 </S.ReviewImg>
                                 <S.ReviewName>
-                                    {comment.name}
+                                    {comment.name
+                                        ? comment.name
+                                        : comment.author.email}
                                     <span>
                                         {formatDate(comment.created_on)}
                                     </span>

@@ -19,7 +19,11 @@ export default function AddNewAds({ setAdsModal }) {
     const [createAdsWithoutImg] = useCreateAdsWithoutImgMutation();
     const [uploadAdsImg] = useUploadAdsImgMutation();
     const [getTokenRefresh] = useGetTokenRefreshMutation();
-    const { handleSubmit, register } = useForm();
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm();
     const [selectedFile] = useState([]);
     const [createAds, setCreateAds] = useState({
         title: "",
@@ -112,7 +116,7 @@ export default function AddNewAds({ setAdsModal }) {
                                     name="title"
                                     id="formName"
                                     placeholder="Введите название"
-                                    {...register("title")}
+                                    {...register("title", { required: true })}
                                     onChange={(e) =>
                                         setCreateAds({
                                             ...createAds,
@@ -120,6 +124,11 @@ export default function AddNewAds({ setAdsModal }) {
                                         })
                                     }
                                 />
+                                {errors.title && (
+                                    <S.MessageError>
+                                        Это поле обязательно для заполнения
+                                    </S.MessageError>
+                                )}
                             </S.FormNewArtBlock>
                             <S.FormNewArtBlock>
                                 <S.FormMewArtLabel htmlFor="text">
@@ -176,7 +185,7 @@ export default function AddNewAds({ setAdsModal }) {
                                     type="number"
                                     name="price"
                                     id="formName"
-                                    {...register("price")}
+                                    {...register("price", { required: true })}
                                     onChange={(e) =>
                                         setCreateAds({
                                             ...createAds,
@@ -184,6 +193,11 @@ export default function AddNewAds({ setAdsModal }) {
                                         })
                                     }
                                 />
+                                {errors.title && (
+                                    <S.MessageError>
+                                        Это поле обязательно для заполнения
+                                    </S.MessageError>
+                                )}
                                 <S.FormNewArtInputPriceCover />
                             </S.FormNewArtBlockPrice>
                             <S.FormNewArtBtnPub type="submit" id="btnPublish">

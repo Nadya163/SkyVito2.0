@@ -27,7 +27,7 @@ export default function InfoPofile({
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("user");
+        localStorage.clear();
         dispatch(resetAuth());
         navigate("/login");
     };

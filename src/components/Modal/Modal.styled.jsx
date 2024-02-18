@@ -639,4 +639,8 @@ export const MainMessageError = styled.div`
     color: red;
 `;
 
+export const MessageError = styled.span`
+    color: red;
+`;
+
 // export const  = styled.div;

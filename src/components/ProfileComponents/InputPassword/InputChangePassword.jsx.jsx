@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "../InputeProfile/InputeProfile.style";
 import { useUpdateUserPasswordMutation } from "../../../ApiService/ApiService";
 
@@ -11,9 +12,9 @@ export default function InputChangePassword({
     setVisibl,
     setVisiblPassword,
 }) {
-    // const [updatedUser, setUpdatedUser] = useState(userId);
+    const navigate = useNavigate();
     const [changeUserPassword] = useUpdateUserPasswordMutation(userId);
-    const [password_1, setPassword] = useState(userId.password);
+    const [password_1, setPassword] = useState("");
     const [password_2, setRepeatPassword] = useState("");
     const {
         handleSubmit,
@@ -31,6 +32,8 @@ export default function InputChangePassword({
             password_2,
         }).then((response) => {
             console.log(response);
+            localStorage.clear();
+            navigate("/login");
             setVisibl(true);
             setVisiblPassword(false);
         });

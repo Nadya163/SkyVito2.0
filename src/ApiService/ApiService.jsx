@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { useNavigate } from "react-router-dom";
 import { setAuth } from "../Store/Redux/AuthSlice";
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
@@ -24,12 +23,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         return result;
     }
 
-    const navigate = useNavigate();
-
     const forceLogout = () => {
         // console.debug("Принудительная авторизация!");
         api.dispatch(setAuth(null));
-        navigate("/login");
+        window.location.href = "/login";
     };
 
     const { auth } = api.getState();
